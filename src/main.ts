@@ -10,12 +10,8 @@ async function bootstrap() {
 
   const prismaService = app.get(PrismaService);
   await prismaService.enableShutdownHooks(app);
-
-  const port = process.env.PORT || 3000;
-  console.log('Starting NestJS app on port', process.env.PORT);
-
-  await app.listen(process.env.PORT || 3000);
-
-  console.log(`Listening on ${port}`);
+  const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+  await app.listen(port, '0.0.0.0'); 
+  console.log(`🚀 NestJS app running on port ${port}`);
 }
 bootstrap();
